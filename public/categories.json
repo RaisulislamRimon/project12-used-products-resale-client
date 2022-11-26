@@ -1,14 +1,17 @@
 [
   {
     "_id": 1,
-    "categories_name": "novel book"
+    "categories_name": "novel book",
+    "img": "https://images.pexels.com/photos/3847645/pexels-photo-3847645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     "_id": 2,
-    "categories_name": "story book"
+    "categories_name": "story book",
+    "img": "https://images.pexels.com/photos/4031548/pexels-photo-4031548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     "_id": 3,
-    "categories_name": "cook book"
+    "categories_name": "cook book",
+    "img": "https://images.pexels.com/photos/6373448/pexels-photo-6373448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   }
 ]
