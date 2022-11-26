@@ -1,0 +1,14 @@
+[
+  {
+    "_id": 1,
+    "categories_name": "novel book"
+  },
+  {
+    "_id": 2,
+    "categories_name": "story book"
+  },
+  {
+    "_id": 3,
+    "categories_name": "cook book"
+  }
+]

@@ -2,8 +2,8 @@ import React from "react";
 
 const Advertise = () => {
   return (
-    <div>
-      <div className="hero bg-base-200">
+    <div className="p-5">
+      <div className="hero bg-base-200 border border-purple-300 rounded-lg">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src="https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -18,7 +18,7 @@ const Advertise = () => {
               eaque voluptatum iure expedita rem, laborum, non ipsam asperiores
               velit.
             </p>
-            <button className="btn btn-primary">Buy this item</button>
+            <button className="btn btn-primary">Get this hot offer now</button>
           </div>
         </div>
       </div>
