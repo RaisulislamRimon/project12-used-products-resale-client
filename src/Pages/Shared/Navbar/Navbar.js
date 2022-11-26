@@ -5,13 +5,15 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link>Item 1</Link>
+        <Link to="/">Product categories</Link>
       </li>
       <li tabIndex={0}>
-        <Link className="justify-between">Parent</Link>
+        <Link to="/" className="justify-between">
+          Advertised items
+        </Link>
       </li>
       <li>
-        <Link>Item 3</Link>
+        <Link to="/">All products</Link>
       </li>
     </>
   );
@@ -43,7 +45,9 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Buy Sell Club
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
