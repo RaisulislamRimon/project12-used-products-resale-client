@@ -5,7 +5,7 @@ import ShowBooksByCategoriesCard from "../ShowBooksByCategoriesCard/ShowBooksByC
 const ShowBooksByCategories = () => {
   const { category_name } = useParams();
   const books = useLoaderData();
-  console.log(books);
+
   return (
     <div className="min-h-screen">
       <div className="mt-10">

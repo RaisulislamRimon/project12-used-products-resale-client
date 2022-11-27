@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 const BookCategoryCard = ({ category }) => {
   const { categories_name, img, desc, _id } = category;
+  const categoriesName =
+    categories_name.charAt(0).toUpperCase() +
+    categories_name.slice(1).toLowerCase();
+  const categoriesNameUpdate = categoriesName.replaceAll("-", " ");
   return (
     <div>
       <div className="card bg-base-100 shadow-xl">
@@ -10,7 +14,7 @@ const BookCategoryCard = ({ category }) => {
           <img className="lg:w-96 h-64 lg:rounded" src={img} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{categories_name}</h2>
+          <h2 className="card-title">{categoriesNameUpdate}</h2>
           {/* <p>{desc}</p> */}
           <p>
             {`${desc.substring(0, 100)}...`}
