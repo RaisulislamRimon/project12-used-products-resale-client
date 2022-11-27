@@ -5,7 +5,7 @@ import BookCategoryCard from "../BookCategoryCard/BookCategoryCard";
 const BooksCategories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("categories.json")
+    fetch("http://localhost:5000/books-categories")
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);

@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BookCategoryCard = ({ category }) => {
-  const { categories_name, img } = category;
+  const { categories_name, img, desc, _id } = category;
   return (
     <div>
       <div className="card bg-base-100 shadow-xl">
@@ -10,13 +11,21 @@ const BookCategoryCard = ({ category }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{categories_name}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
+          {/* <p>{desc}</p> */}
+          <p>
+            {`${desc.substring(0, 100)}...`}
+            <br />
+            <Link to="">Read more</Link>
+          </p>
+          {/* <div className="card-actions justify-end">
             <div className="badge badge-outline">Fashion</div>
             <div className="badge badge-outline">Products</div>
-          </div>
+          </div> */}
 
-          <button className="btn btn-primary">Buy Now</button>
+          {/* <Link to={`/books-categories/${_id}`}> */}
+          <Link to={`/books/${categories_name}`}>
+            <button className="btn btn-primary">See All Books</button>
+          </Link>
         </div>
       </div>
     </div>
