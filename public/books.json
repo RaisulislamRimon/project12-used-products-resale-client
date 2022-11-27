@@ -1,25 +1,25 @@
 [
   {
     "category_name": "novel-book",
-    "book_name": "Jane Eyre",
-    "book_writer": "Charlotte Bronte",
-    "book_img": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSAWgeRCPevbvIuTdEE5A-oucW5xPJArRdww2Fx9ePndXR21-Pj",
-    "location": "Dhaka",
-    "originalPrice": "200",
-    "postTime": "1669532644853",
-    "resalePrice": "42",
-    "sellerName": "John"
-  },
-  {
-    "category_name": "novel-book",
     "book_name": "Wuthering Heights",
     "book_writer": "Emily Bronte",
     "book_img": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTpTPrkF1idibrEYD6O6a5wT_9mz_aSMdufwDa61CKIuAcs6CWJ",
     "location": "Chattogram",
-    "originalPrice": "256",
-    "postTime": "1669533269583",
+    "originalPrice": { "$numberInt": "256" },
+    "postTime": "Sun Nov 27 2022 13:47:06 GMT+0600",
     "resalePrice": "48",
     "sellerName": "Kathy R. Hollingsworth"
+  },
+  {
+    "category_name": "novel-book",
+    "book_name": "Jane Eyre",
+    "book_writer": "Charlotte Bronte",
+    "book_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Jane_Eyre_title_page.jpg/800px-Jane_Eyre_title_page.jpg",
+    "location": "Dhaka",
+    "originalPrice": "200",
+    "postTime": "Sun Nov 27 2022 13:45:33 GMT+0600",
+    "resalePrice": "42",
+    "sellerName": "John"
   },
   {
     "category_name": "story-book",
@@ -28,7 +28,7 @@
     "book_img": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTLBxomsgf15imHkdZFRPEZL9ZzCPepsnYrW72Uk6sohn_aRljY",
     "location": "Rajshahi",
     "originalPrice": "128",
-    "postTime": "1669533289845",
+    "postTime": "Sun Nov 27 2022 13:52:18 GMT+0600",
     "resalePrice": "52",
     "sellerName": "Susan G. Hawkins"
   },
@@ -39,20 +39,9 @@
     "book_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/A_Good_Man_Is_Hard_to_Find_-_Cover.jpg/220px-A_Good_Man_Is_Hard_to_Find_-_Cover.jpg",
     "location": "Khulna",
     "originalPrice": "149",
-    "postTime": "1669533448883",
+    "postTime": "Sun Nov 27 2022 13:52:43 GMT+0600",
     "resalePrice": "53",
     "sellerName": "Lucia D. Case"
-  },
-  {
-    "category_name": "cook-book",
-    "book_name": "Vegetables Unleashed: A Cookbook",
-    "book_writer": "Jose Andres and Matt Goulding",
-    "book_img": "https://m.media-amazon.com/images/P/0062668382.01._SCLZZZZZZZ_SX500_.jpg",
-    "location": "Barisal",
-    "originalPrice": "200",
-    "postTime": "1669533508244",
-    "resalePrice": "54",
-    "sellerName": "Linda M. Mccoy"
   },
   {
     "category_name": "cook-book",
@@ -61,8 +50,19 @@
     "book_img": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR_zfX6k4JmSHUs3wJnGx1gBt9RdqB56zQ5tVtkUxkdapyL_fpw",
     "location": "Sylhet",
     "originalPrice": "256",
-    "postTime": "1669533580947",
+    "postTime": "Sun Nov 27 2022 13:53:24 GMT+0600",
     "resalePrice": "55",
     "sellerName": "Jenna F. Pisani"
+  },
+  {
+    "category_name": "cook-book",
+    "book_name": "Vegetables Unleashed: A Cookbook",
+    "book_writer": "Jose Andres and Matt Goulding",
+    "book_img": "https://m.media-amazon.com/images/P/0062668382.01._SCLZZZZZZZ_SX500_.jpg",
+    "location": "Barisal",
+    "originalPrice": "200",
+    "postTime": "Sun Nov 27 2022 13:53:02 GMT+0600",
+    "resalePrice": "54",
+    "sellerName": "Linda M. Mccoy"
   }
 ]
