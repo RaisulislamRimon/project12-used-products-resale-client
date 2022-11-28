@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const [checked, setChecked] = useState("user");
+  // const [checked, setChecked] = useState("user");
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -35,7 +35,7 @@ const Login = () => {
     const userInfo = {
       email,
       password,
-      checked,
+      // checked,
     };
     console.log(userInfo);
   };
