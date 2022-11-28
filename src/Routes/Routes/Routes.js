@@ -4,6 +4,7 @@ import Main from "../../Layout/Main/Main";
 import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/AdvertiseDetails";
 import Home from "../../Pages/Home/Home/Home";
 import ShowBooksByCategories from "../../Pages/Home/ShowBooksByCategories/ShowBooksByCategories";
+import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/Shared/NotFound/NotFound";
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         element: <AdvertiseDetails />,
         // loader: ({ params }) =>
         //   fetch(`http://localhost:5000/advertise/${params.advertiseId}`),
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "*",

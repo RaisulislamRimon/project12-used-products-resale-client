@@ -66,12 +66,12 @@ const Advertise = () => {
               estimated number of copies sold of each book, rather than the
               number of books printed or currently owned.
             </p>
-            {/* <Link to={`/advertise/${advertise._id}`}> */}
-            <button className="btn btn-primary">
-              Get this hot offer now
-              <FaHotjar className="ml-2" />
-            </button>
-            {/* </Link> */}
+            <Link to={`/advertise/${advertise._id}`}>
+              <button className="btn btn-primary">
+                Get this hot offer now
+                <FaHotjar className="ml-2" />
+              </button>
+            </Link>
           </div>
         </div>
       </div>
