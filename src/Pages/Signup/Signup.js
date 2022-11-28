@@ -3,7 +3,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Login = () => {
+const Signup = () => {
   const [checked, setChecked] = useState("user");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div>
       <div className="mt-10">
-        <h2 className="text-center text-4xl font-bold mb-10">Login</h2>
+        <h2 className="text-center text-4xl font-bold mb-10">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-control w-full max-w-xs mx-auto mb-10">
             <div className="mb-5">
@@ -69,27 +69,58 @@ const Login = () => {
                 className="input input-bordered w-full max-w-xs"
               />
             </div>
-
+            {/* checkbox */}
+            <div className="mt-3">
+              <div className="form-control">
+                <h3>Are you a - {checked} </h3>
+                <label className="label cursor-pointer">
+                  <span className="label-text">Buyer</span>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="buyer"
+                    className="radio checked:bg-red-500"
+                    onChange={() => {
+                      setChecked("buyer");
+                    }}
+                  />
+                </label>
+              </div>
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text">Seller</span>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="seller"
+                    className="radio checked:bg-blue-500"
+                    onChange={() => {
+                      setChecked("seller");
+                    }}
+                  />
+                </label>
+              </div>
+            </div>
             <button
               type="submit"
               className="btn btn-wide btn-primary mx-auto my-10 text-lg"
             >
-              Login
+              Sign Up
             </button>
 
             <div className="mx-auto btn mb-4">
-              <p className="">Or, Sign in with Google</p>
+              <p className="">Or, Sign up with Google</p>
               <div className="flex justify-around text-2xl text-center">
                 <FaGoogle className="hover:cursor-pointer ml-3 text-lg" />
               </div>
             </div>
             <p>
-              New to this Buy Sell Club?{" "}
+              Already have an account?{" "}
               <Link
-                to="/register"
+                to="/login"
                 className="link link-primary underline-offset-4"
               >
-                Register a New Account
+                Please log in now
               </Link>
             </p>
           </div>
@@ -99,4 +130,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
