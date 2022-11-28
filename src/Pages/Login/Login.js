@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const [checked, setChecked] = useState("user");
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,6 +31,13 @@ const Login = () => {
       });
       return;
     }
+    // console.log(email, password, checked);
+    const userInfo = {
+      email,
+      password,
+      checked,
+    };
+    console.log(userInfo);
   };
   return (
     <div>
@@ -61,7 +69,38 @@ const Login = () => {
                 className="input input-bordered w-full max-w-xs"
               />
             </div>
-
+            {/* checkbox */}
+            <div className="mt-3">
+              <div className="form-control">
+                <h3>Are you a - </h3>
+                <label className="label cursor-pointer">
+                  <span className="label-text">Buyer</span>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="buyer"
+                    className="radio checked:bg-red-500"
+                    onChange={() => {
+                      setChecked("buyer");
+                    }}
+                  />
+                </label>
+              </div>
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text">Seller</span>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="seller"
+                    className="radio checked:bg-blue-500"
+                    onChange={() => {
+                      setChecked("seller");
+                    }}
+                  />
+                </label>
+              </div>
+            </div>
             <button
               type="submit"
               className="btn btn-wide btn-primary mx-auto my-10 text-lg"
@@ -76,7 +115,7 @@ const Login = () => {
               </div>
             </div>
             <p>
-              New to this website?{" "}
+              New to this Buy Sell Club?{" "}
               <Link
                 to="/register"
                 className="link link-primary underline-offset-4"
