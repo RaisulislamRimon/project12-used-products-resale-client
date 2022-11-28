@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   // const [checked, setChecked] = useState("user");
+  const { providerLogin, signIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const googleProvider = new GoogleAuthProvider();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -38,7 +49,63 @@ const Login = () => {
       // checked,
     };
     console.log(userInfo);
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user)
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You have successfully logged in",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        const currentUser = {
+          email: result.user.email,
+        };
+        form.reset();
+        navigate(from, { replace: true });
+        // fetch("http://localhost:5000/jwt", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(currentUser),
+        // })
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     // console.log(data);
+        //     // localStorage.setItem("club", data.token);
+        //     navigate(from, { replace: true });
+        //   });
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: error.code && error.code,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   };
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Please try again",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
   return (
     <div>
       <div className="mt-10">
@@ -80,7 +147,10 @@ const Login = () => {
             <div className="mx-auto btn mb-4">
               <p className="">Or, Sign in with Google</p>
               <div className="flex justify-around text-2xl text-center">
-                <FaGoogle className="hover:cursor-pointer ml-3 text-lg" />
+                <FaGoogle
+                  onClick={handleGoogleSignIn}
+                  className="hover:cursor-pointer ml-3 text-lg"
+                />
               </div>
             </div>
             <p>

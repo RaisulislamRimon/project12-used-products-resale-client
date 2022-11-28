@@ -16,8 +16,8 @@ const Advertise = () => {
       .then((data) => {
         setLoading(false);
         setAdvertise(data[data.length - 1]);
-        console.log(data[data.length - 1]);
-        console.log(data[data.length - 1]._id);
+        // console.log(data[data.length - 1]);
+        // console.log(data[data.length - 1]._id);
       });
   }, []);
 

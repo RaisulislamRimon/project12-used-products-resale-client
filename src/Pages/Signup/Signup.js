@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
   const [checked, setChecked] = useState("user");
+  const { createUser, updateUserProfile, providerLogin } =
+    useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const googleProvider = new GoogleAuthProvider();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,13 +43,58 @@ const Signup = () => {
       });
       return;
     }
+
+    createUser(email, password)
+      .then((result) => {
+        const userIdFirebase = result.user.uid;
+
+        const userInfo = {
+          email,
+          password,
+          checked,
+          userIdFirebase,
+        };
+        console.log(userInfo);
+
+        fetch("http://localhost:5000/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your account has been successfully created",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        form.reset();
+        // updateUserProfile({
+        //   displayName: name,
+        //   photoURL: photoUrl,
+        // });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title:
+            (error?.code && error?.code) ||
+            "The email address is already in use by another account.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
     // console.log(email, password, checked);
-    const userInfo = {
-      email,
-      password,
-      checked,
-    };
-    console.log(userInfo);
   };
   return (
     <div>
