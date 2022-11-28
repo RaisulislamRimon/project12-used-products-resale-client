@@ -1,13 +1,41 @@
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    if (email === "" || password === "") {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "All fields are required",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Password must be at least 6 characters",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      return;
+    }
+  };
   return (
     <div>
       <div className="mt-10">
         <h2 className="text-center text-4xl font-bold mb-10">Login</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-control w-full max-w-xs mx-auto mb-10">
             <div className="mb-5">
               <label htmlFor="email" className="label">
