@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { FaHotjar } from "react-icons/fa";
 import { GiEmberShot } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import Loading from "../../../Shared/Loading/Loading";
 
 const Advertise = () => {
   const [advertise, setAdvertise] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/advertise`)
-      .then((res) => res.json())
+      .then((res) => {
+        setLoading(true);
+        return res.json();
+      })
       .then((data) => {
+        setLoading(false);
         setAdvertise(data[data.length - 1]);
         console.log(data[data.length - 1]);
+        console.log(data[data.length - 1]._id);
       });
   }, []);
 
@@ -26,6 +33,7 @@ const Advertise = () => {
 
   return (
     <div className="p-5 bg-pink-300	rounded-lg">
+      {loading && <Loading />}
       <div className="hero bg-pink-100 border border-purple-300 rounded-lg">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
