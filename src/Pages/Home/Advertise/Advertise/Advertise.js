@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaHotjar } from "react-icons/fa";
 import { GiEmberShot } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Advertise = () => {
   const [advertise, setAdvertise] = useState([]);
@@ -24,9 +25,8 @@ const Advertise = () => {
   // if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="p-5">
-      {advertise.length}
-      <div className="hero bg-base-200 border border-purple-300 rounded-lg">
+    <div className="p-5 bg-pink-300	rounded-lg">
+      <div className="hero bg-pink-100 border border-purple-300 rounded-lg">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             // src="https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -58,10 +58,12 @@ const Advertise = () => {
               estimated number of copies sold of each book, rather than the
               number of books printed or currently owned.
             </p>
+            {/* <Link to={`/advertise/${advertise._id}`}> */}
             <button className="btn btn-primary">
               Get this hot offer now
               <FaHotjar className="ml-2" />
             </button>
+            {/* </Link> */}
           </div>
         </div>
       </div>
