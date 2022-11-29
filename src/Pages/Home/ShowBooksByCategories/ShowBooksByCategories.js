@@ -6,6 +6,9 @@ import ShowBooksByCategoriesCard from "../ShowBooksByCategoriesCard/ShowBooksByC
 const ShowBooksByCategories = () => {
   const { category_name } = useParams();
   const books = useLoaderData();
+  const [bookData, setBookData] = React.useState("");
+
+  console.log(bookData);
 
   return (
     <div className="min-h-screen">
@@ -14,11 +17,16 @@ const ShowBooksByCategories = () => {
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
         {books.map((book) => (
-          <ShowBooksByCategoriesCard key={book._id} book={book} />
+          <ShowBooksByCategoriesCard
+            key={book._id}
+            book={book}
+            bookData={bookData}
+            setBookData={setBookData}
+          />
         ))}
       </div>
       {/* modal opening button */}
-      <BuyNowModal />
+      <BuyNowModal bookData={bookData} setBookData={setBookData} />
     </div>
   );
 };

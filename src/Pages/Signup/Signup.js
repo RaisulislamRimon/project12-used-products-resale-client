@@ -66,6 +66,15 @@ const Signup = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
+            if (data.acknowledged) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Account created successfully",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+            }
           });
 
         Swal.fire({

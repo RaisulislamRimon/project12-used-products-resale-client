@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GoVerified, GoUnverified } from "react-icons/go";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
-const ShowBooksByCategoriesCard = ({ book }) => {
+const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
   const { user } = useContext(AuthContext);
   const {
     _id,
@@ -16,6 +16,12 @@ const ShowBooksByCategoriesCard = ({ book }) => {
     resalePrice,
     sellerName,
   } = book;
+
+  const handleBuyNow = (book) => {
+    setBookData(book);
+    // console.log(book);
+  };
+
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -48,7 +54,11 @@ const ShowBooksByCategoriesCard = ({ book }) => {
           {/* <div className="card-actions">
             <button className="btn btn-primary">Buy Now</button>
           </div> */}
-          <label htmlFor="my-modal-3" className="btn btn-primary">
+          <label
+            onClick={() => handleBuyNow(book)}
+            htmlFor="my-modal-3"
+            className="btn btn-primary"
+          >
             Buy Now
           </label>
         </div>
