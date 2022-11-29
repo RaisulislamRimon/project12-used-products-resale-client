@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const imageHostKey = process.env.REACT_APP_IMGBB_KEY;
 
 const AddAProduct = () => {
   const [condition, setCondition] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [bookCategory, setBookCategory] = useState("");
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const productName = form.productName.value;
+    const bookWriter = form.bookWriter.value;
     console.log(selectedImage);
 
     const formData = new FormData();
     // const productImage = formData.selectedImage;
     // const productImage = selectedImage;
-    formData.append("productImage", selectedImage);
-    console.log(selectedImage);
+    formData.append("image", selectedImage);
+    // console.log(selectedImage);
 
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    const resalePrice = form.resalePrice.value;
+    const originalPrice = form.originalPrice.value;
+    const mobileNumber = form.mobileNumber.value;
+    const location = form.location.value;
+    const description = form.description.value;
+    const yearOfPurchase = form.yearOfPurchase.value;
+
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
     fetch(url, {
       method: "POST",
@@ -26,26 +38,45 @@ const AddAProduct = () => {
     })
       .then((response) => response.json())
       .then((imgData) => {
-        console.log(imgData);
-      });
+        if (imgData.success) {
+          // console.log(imgData.data.url);
+          const addedProductInfo = {
+            book_name: productName,
+            book_writer: bookWriter,
+            productImage: imgData?.data?.url,
+            resalePrice: resalePrice,
+            originalPrice: originalPrice,
+            mobileNumber,
+            location,
+            category_name: bookCategory,
+            description,
+            yearOfPurchase,
+            condition,
+            sellerName: user?.displayName,
+            postTime: new Date().toDateString(),
+          };
+          fetch(`http://localhost:5000/add-product`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(addedProductInfo),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                Swal.fire({
+                  title: "Success!",
+                  text: "Your product has been added!",
+                  icon: "success",
+                  timer: 1000,
+                });
+              }
+            });
 
-    const price = form.price.value;
-    const mobileNumber = form.mobileNumber.value;
-    const location = form.location.value;
-    const productCategory = form.productCategory.value;
-    const description = form.description.value;
-    const yearOfPurchase = form.yearOfPurchase.value;
-    const addedProductInfo = {
-      productName,
-      price,
-      mobileNumber,
-      location,
-      productCategory,
-      description,
-      yearOfPurchase,
-      condition,
-    };
-    console.log(addedProductInfo);
+          // console.log(addedProductInfo);
+        }
+      });
   };
   return (
     <div>
@@ -58,7 +89,7 @@ const AddAProduct = () => {
             <div className="form-control w-full max-w-xs mx-auto mb-10">
               <div className="mb-5">
                 <label htmlFor="productName" className="label">
-                  <span className="label-text">Product Name</span>
+                  <span className="label-text">Book Name</span>
                 </label>
                 <input
                   type="text"
@@ -70,12 +101,25 @@ const AddAProduct = () => {
               </div>
 
               <div className="mb-5">
+                <label htmlFor="bookWriter" className="label">
+                  <span className="label-text">Book Writer</span>
+                </label>
+                <input
+                  type="text"
+                  name="bookWriter"
+                  id="bookWriter"
+                  placeholder="book writer"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
+
+              <div className="mb-5">
                 <label htmlFor="productImage" className="label">
                   <span className="label-text">Product Image</span>
                 </label>
                 <input
                   type="file"
-                  name="productImage"
+                  name="image"
                   id="productImage"
                   onChange={(event) => {
                     // console.log(event.target.files[0]);
@@ -86,14 +130,27 @@ const AddAProduct = () => {
               </div>
 
               <div className="mb-5">
-                <label htmlFor="price" className="label">
-                  <span className="label-text">Price</span>
+                <label htmlFor="originalPrice" className="label">
+                  <span className="label-text">Original Price</span>
                 </label>
                 <input
                   type="text"
-                  name="price"
-                  id="price"
-                  placeholder="price"
+                  name="originalPrice"
+                  id="originalPrice"
+                  placeholder="original price"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
+
+              <div className="mt-3">
+                <label htmlFor="resalePrice" className="label">
+                  <span className="label-text">Resale Price</span>
+                </label>
+                <input
+                  type="text"
+                  name="resalePrice"
+                  id="resalePrice"
+                  placeholder="resale price"
                   className="input input-bordered w-full max-w-xs"
                 />
               </div>
@@ -158,6 +215,53 @@ const AddAProduct = () => {
                 />
               </div>
 
+              {/* select category */}
+              <div className="mt-3">
+                <div className="form-control">
+                  <h3>Select category : {bookCategory}</h3>
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Novel Book</span>
+                    <input
+                      type="radio"
+                      name="bookCategory"
+                      value="novel-book"
+                      className="radio checked:bg-red-500"
+                      onChange={() => {
+                        setBookCategory("novel-book");
+                      }}
+                    />
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Story book</span>
+                    <input
+                      type="radio"
+                      name="bookCategory"
+                      value="story-book"
+                      className="radio checked:bg-blue-500"
+                      onChange={() => {
+                        setBookCategory("story-book");
+                      }}
+                    />
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Cook Book</span>
+                    <input
+                      type="radio"
+                      name="bookCategory"
+                      value="cook-book"
+                      className="radio checked:bg-blue-500"
+                      onChange={() => {
+                        setBookCategory("cook-book");
+                      }}
+                    />
+                  </label>
+                </div>
+              </div>
+
               <div className="mt-3">
                 <label htmlFor="location" className="label">
                   <span className="label-text">Location</span>
@@ -167,19 +271,6 @@ const AddAProduct = () => {
                   name="location"
                   id="location"
                   placeholder="location"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </div>
-
-              <div className="mt-3">
-                <label htmlFor="productCategory" className="label">
-                  <span className="label-text">Product Category</span>
-                </label>
-                <input
-                  type="text"
-                  name="productCategory"
-                  id="productCategory"
-                  placeholder="product category"
                   className="input input-bordered w-full max-w-xs"
                 />
               </div>
