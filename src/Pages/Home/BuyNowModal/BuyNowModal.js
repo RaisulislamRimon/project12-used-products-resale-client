@@ -1,16 +1,37 @@
 import React, { useContext } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const BuyNowModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const { book_name, book_writer } = bookData;
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.form;
+    console.log(user);
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const meetingLocation = form.meetingLocation.value;
     setBookData(bookData);
-    console.log(bookData);
-    
+    console.log(bookData, name, email, phone, meetingLocation);
+    const orderInfo = { bookData, name, email, phone, meetingLocation };
+    console.log(orderInfo);
+
+    fetch(`http://localhost:5000/buy-now`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          Swal.fire("Good job!", "You clicked on the buy now!", "success");
+        }
+      });
   };
   return (
     <div>
