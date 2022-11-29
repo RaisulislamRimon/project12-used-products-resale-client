@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
@@ -9,6 +10,8 @@ const AddAProduct = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [bookCategory, setBookCategory] = useState("");
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,53 +33,75 @@ const AddAProduct = () => {
     const description = form.description.value;
     const yearOfPurchase = form.yearOfPurchase.value;
 
-    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    if (
+      productName &&
+      bookWriter &&
+      selectedImage &&
+      resalePrice &&
+      originalPrice &&
+      mobileNumber &&
+      location &&
+      description &&
+      yearOfPurchase
+    ) {
+      const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((imgData) => {
-        if (imgData.success) {
-          // console.log(imgData.data.url);
-          const addedProductInfo = {
-            book_name: productName,
-            book_writer: bookWriter,
-            productImage: imgData?.data?.url,
-            resalePrice: resalePrice,
-            originalPrice: originalPrice,
-            mobileNumber,
-            location,
-            category_name: bookCategory,
-            description,
-            yearOfPurchase,
-            condition,
-            sellerName: user?.displayName,
-            postTime: new Date().toDateString(),
-          };
-          fetch(`http://localhost:5000/add-product`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(addedProductInfo),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.acknowledged) {
-                Swal.fire({
-                  title: "Success!",
-                  text: "Your product has been added!",
-                  icon: "success",
-                  timer: 1000,
-                });
-              }
-            });
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((imgData) => {
+          if (imgData.success) {
+            // console.log(imgData.data.url);
+            const addedProductInfo = {
+              book_name: productName,
+              book_writer: bookWriter,
+              productImage: imgData?.data?.url,
+              resalePrice: resalePrice,
+              originalPrice: originalPrice,
+              mobileNumber,
+              location,
+              category_name: bookCategory,
+              description,
+              yearOfPurchase,
+              condition,
+              sellerName: user?.displayName,
+              postTime: new Date().toDateString(),
+            };
+            fetch(`http://localhost:5000/add-product`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(addedProductInfo),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.acknowledged) {
+                  Swal.fire({
+                    title: "Success!",
+                    text: "Your product has been added!",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false,
+                  });
+                  navigate("/dashboard/my-products");
+                }
+              });
 
-          // console.log(addedProductInfo);
-        }
+            // console.log(addedProductInfo);
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill up all the fields!",
+        icon: "error",
+        timer: 2000,
+        showConfirmButton: false,
       });
+    }
   };
   return (
     <div>
