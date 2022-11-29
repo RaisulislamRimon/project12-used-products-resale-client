@@ -3,12 +3,14 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const BuyNowModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
-  console.log(bookData);
+  console.log(user);
   const { book_name, book_writer } = bookData;
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.form;
     setBookData(bookData);
+    console.log(bookData);
+    
   };
   return (
     <div>
@@ -32,9 +34,14 @@ const BuyNowModal = ({ bookData, setBookData }) => {
           <p className="py-4">Book writer : {book_writer}</p>
 
           {/* modal form */}
-          <form className="grid grid-cols-1 gap-3 mt-10">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 gap-3 mt-10"
+          >
             <input
-              defaultValue={user?.displayName}
+              defaultValue={
+                user?.displayName === null ? user?.email : user?.displayName
+              }
               disabled
               type="text"
               name="name"
@@ -63,7 +70,6 @@ const BuyNowModal = ({ bookData, setBookData }) => {
             />
             <br />
             <input
-              onClick={handleSubmit}
               type="submit"
               value="Submit"
               className="btn btn-primary w-full "

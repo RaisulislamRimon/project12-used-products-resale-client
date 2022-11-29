@@ -20,6 +20,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     if (email === "" || password === "") {
@@ -49,6 +50,7 @@ const Signup = () => {
         const userIdFirebase = result.user.uid;
 
         const userInfo = {
+          name,
           email,
           password,
           checked,
@@ -85,10 +87,10 @@ const Signup = () => {
           timer: 2000,
         });
         form.reset();
-        // updateUserProfile({
-        //   displayName: name,
-        //   photoURL: photoUrl,
-        // });
+        updateUserProfile({
+          displayName: name,
+          // photoURL: photoUrl,
+        });
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -120,6 +122,18 @@ const Signup = () => {
                 name="email"
                 id="email"
                 placeholder="email"
+                className="input input-bordered w-full max-w-xs"
+              />
+            </div>
+            <div className="mb-5">
+              <label htmlFor="name" className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="name"
                 className="input input-bordered w-full max-w-xs"
               />
             </div>

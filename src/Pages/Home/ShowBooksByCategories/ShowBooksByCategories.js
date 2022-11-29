@@ -8,7 +8,7 @@ const ShowBooksByCategories = () => {
   const books = useLoaderData();
   const [bookData, setBookData] = React.useState("");
 
-  console.log(bookData);
+  // console.log(bookData);
 
   return (
     <div className="min-h-screen">
