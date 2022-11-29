@@ -5,6 +5,14 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+  // fetch(`http://localhost:5000/user-type-find/email=${user?.email}`)
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     console.log(user?.checked);
+  //     console.log(user?.email);
+  //   });
+
   const handleLogOut = () => {
     logOut().then(() => {});
   };
@@ -21,6 +29,11 @@ const Navbar = () => {
       <li>
         <Link to="/">All products</Link>
       </li>
+      {user?.email && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
     </>
   );
   return (
