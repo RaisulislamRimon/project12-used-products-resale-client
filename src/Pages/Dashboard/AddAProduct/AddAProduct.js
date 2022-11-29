@@ -1,11 +1,51 @@
 import React, { useState } from "react";
 
+const imageHostKey = process.env.REACT_APP_IMGBB_KEY;
+
 const AddAProduct = () => {
   const [condition, setCondition] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const productName = form.productName.value;
+    console.log(selectedImage);
+
+    const formData = new FormData();
+    // const productImage = formData.selectedImage;
+    // const productImage = selectedImage;
+    formData.append("productImage", selectedImage);
+    console.log(selectedImage);
+
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((imgData) => {
+        console.log(imgData);
+      });
+
+    const price = form.price.value;
+    const mobileNumber = form.mobileNumber.value;
+    const location = form.location.value;
+    const productCategory = form.productCategory.value;
+    const description = form.description.value;
+    const yearOfPurchase = form.yearOfPurchase.value;
+    const addedProductInfo = {
+      productName,
+      price,
+      mobileNumber,
+      location,
+      productCategory,
+      description,
+      yearOfPurchase,
+      condition,
+    };
+    console.log(addedProductInfo);
   };
   return (
     <div>
@@ -17,7 +57,7 @@ const AddAProduct = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-control w-full max-w-xs mx-auto mb-10">
               <div className="mb-5">
-                <label htmlFor="email" className="label">
+                <label htmlFor="productName" className="label">
                   <span className="label-text">Product Name</span>
                 </label>
                 <input
@@ -28,8 +68,25 @@ const AddAProduct = () => {
                   className="input input-bordered w-full max-w-xs"
                 />
               </div>
+
               <div className="mb-5">
-                <label htmlFor="name" className="label">
+                <label htmlFor="productImage" className="label">
+                  <span className="label-text">Product Image</span>
+                </label>
+                <input
+                  type="file"
+                  name="productImage"
+                  id="productImage"
+                  onChange={(event) => {
+                    // console.log(event.target.files[0]);
+                    setSelectedImage(event.target.files[0]);
+                  }}
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label htmlFor="price" className="label">
                   <span className="label-text">Price</span>
                 </label>
                 <input
@@ -40,18 +97,6 @@ const AddAProduct = () => {
                   className="input input-bordered w-full max-w-xs"
                 />
               </div>
-              {/* <div>
-                <label htmlFor="password" className="label">
-                  <span className="label-text">condition type</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="password"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </div> */}
 
               {/* checkbox */}
               <div className="mt-3">
@@ -101,7 +146,7 @@ const AddAProduct = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="password" className="label">
+                <label htmlFor="mobileNumber" className="label">
                   <span className="label-text">Mobile Number</span>
                 </label>
                 <input
@@ -114,7 +159,7 @@ const AddAProduct = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="password" className="label">
+                <label htmlFor="location" className="label">
                   <span className="label-text">Location</span>
                 </label>
                 <input
@@ -127,7 +172,7 @@ const AddAProduct = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="password" className="label">
+                <label htmlFor="productCategory" className="label">
                   <span className="label-text">Product Category</span>
                 </label>
                 <input
@@ -140,7 +185,7 @@ const AddAProduct = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="password" className="label">
+                <label htmlFor="description" className="label">
                   <span className="label-text">Description</span>
                 </label>
                 <input
@@ -153,20 +198,7 @@ const AddAProduct = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="password" className="label">
-                  <span className="label-text">Price</span>
-                </label>
-                <input
-                  type="text"
-                  name="price"
-                  id="price"
-                  placeholder="price"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </div>
-
-              <div className="mt-3">
-                <label htmlFor="password" className="label">
+                <label htmlFor="yearOfPurchase" className="label">
                   <span className="label-text">Year of purchase</span>
                 </label>
                 <input
