@@ -43,7 +43,11 @@ const MyProducts = () => {
                   <td>{myBook.book_name}</td>
                   <td>{myBook.available}</td>
                   <td>{myBook.resalePrice}</td>
-                  <td>Advertise | Delete</td>
+                  {/* <td>Advertise | Delete</td> */}
+                  <td>
+                    {" "}
+                    {myBook.available === "unsold" && "Advertise | "} Delete
+                  </td>
                 </tr>
               ))}
             </tbody>
