@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import Loading from "../../Shared/Loading/Loading";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,14 @@ const MyProducts = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div>Something went wrong...</div>;
+  }
 
   return (
     <div>
