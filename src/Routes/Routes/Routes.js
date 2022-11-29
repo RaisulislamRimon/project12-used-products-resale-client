@@ -7,6 +7,7 @@ import ShowBooksByCategories from "../../Pages/Home/ShowBooksByCategories/ShowBo
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/Shared/NotFound/NotFound";
 import Signup from "../../Pages/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/books/:category_name",
-        element: <ShowBooksByCategories />,
+        element: (
+          <PrivateRoute>
+            <ShowBooksByCategories />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/books/${params.category_name}`),
       },
