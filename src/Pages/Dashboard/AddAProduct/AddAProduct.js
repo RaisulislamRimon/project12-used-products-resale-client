@@ -55,11 +55,13 @@ const AddAProduct = () => {
           if (imgData.success) {
             // console.log(imgData.data.url);
             const addedProductInfo = {
+              email: user?.email,
               book_name: productName,
               book_writer: bookWriter,
               productImage: imgData?.data?.url,
               resalePrice: resalePrice,
               originalPrice: originalPrice,
+              available: "unsold",
               mobileNumber,
               location,
               category_name: bookCategory,
