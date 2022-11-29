@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GoVerified, GoUnverified } from "react-icons/go";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const ShowBooksByCategoriesCard = ({ book }) => {
+  const { user } = useContext(AuthContext);
   const {
     _id,
     book_name,
@@ -33,10 +36,14 @@ const ShowBooksByCategoriesCard = ({ book }) => {
             Resale Price : <span className="text-red-500">${resalePrice}</span>
           </p>
           <p>Seller Name : {sellerName}</p>
+
           <p>Posted Time : {postTime}</p>
-          <div className="card-actions">
+          {/* <div className="card-actions">
             <button className="btn btn-primary">Buy Now</button>
-          </div>
+          </div> */}
+          <label htmlFor="my-modal-3" className="btn btn-primary">
+            Buy Now
+          </label>
         </div>
       </div>
     </div>

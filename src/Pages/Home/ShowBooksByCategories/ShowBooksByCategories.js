@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import BuyNowModal from "../BuyNowModal/BuyNowModal";
 import ShowBooksByCategoriesCard from "../ShowBooksByCategoriesCard/ShowBooksByCategoriesCard";
 
 const ShowBooksByCategories = () => {
@@ -16,6 +17,8 @@ const ShowBooksByCategories = () => {
           <ShowBooksByCategoriesCard key={book._id} book={book} />
         ))}
       </div>
+      {/* modal opening button */}
+      <BuyNowModal />
     </div>
   );
 };
