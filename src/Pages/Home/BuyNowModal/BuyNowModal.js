@@ -29,7 +29,23 @@ const BuyNowModal = ({ bookData, setBookData }) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          Swal.fire("Good job!", "You clicked on the buy now!", "success");
+          fetch(`http://localhost:5000/buy-now/${bookData._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                Swal.fire(
+                  "Good job!",
+                  "You clicked on the buy now!",
+                  "success"
+                );
+              }
+            });
         }
       });
   };

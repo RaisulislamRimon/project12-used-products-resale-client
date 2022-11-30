@@ -21,8 +21,8 @@ const AddAProduct = () => {
     console.log(selectedImage);
 
     const formData = new FormData();
-    // const productImage = formData.selectedImage;
-    // const productImage = selectedImage;
+    // const productImage book_img formData.selectedImage;
+    // const productImage book_img selectedImage;
     formData.append("image", selectedImage);
     // console.log(selectedImage);
 
@@ -58,7 +58,7 @@ const AddAProduct = () => {
               email: user?.email,
               book_name: productName,
               book_writer: bookWriter,
-              productImage: imgData?.data?.url,
+              book_img: imgData?.data?.url,
               resalePrice: resalePrice,
               originalPrice: originalPrice,
               available: "unsold",
@@ -141,13 +141,13 @@ const AddAProduct = () => {
               </div>
 
               <div className="mb-5">
-                <label htmlFor="productImage" className="label">
+                <label htmlFor="book_img" className="label">
                   <span className="label-text">Product Image</span>
                 </label>
                 <input
                   type="file"
                   name="image"
-                  id="productImage"
+                  id="book_img"
                   onChange={(event) => {
                     // console.log(event.target.files[0]);
                     setSelectedImage(event.target.files[0]);
