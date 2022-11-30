@@ -11,8 +11,11 @@ const useAdmin = (email) => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          // setIsAdmin(data?.isAdmin);
-          // setIsAdminLoading(false);
+          if (data === "admin") {
+            setIsAdmin("admin");
+            setIsAdmin(true);
+            setIsAdminLoading(false);
+          }
         });
     }
   }, [user?.email]);

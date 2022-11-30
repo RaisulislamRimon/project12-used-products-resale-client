@@ -54,20 +54,20 @@ const DashboardLayout = () => {
                   <Link to="/dashboard/my-products">My Products</Link>
                 </li>
                 <li>
-                  <Link to="/my-buyers">My buyers</Link>
+                  <Link to="/dashboard/my-buyers">My buyers</Link>
                 </li>
               </>
             )}
             {userType === "admin" && (
               <>
                 <li>
-                  <Link to="/all-sellers">All sellers</Link>
+                  <Link to="/dashboard/all-sellers">All sellers</Link>
                 </li>
                 <li>
-                  <Link to="/all-buyers">All buyers</Link>
+                  <Link to="/dashboard/all-buyers">All buyers</Link>
                 </li>
                 <li>
-                  <Link to="/reported-items">Reported Items</Link>
+                  <Link to="/dashboard/reported-items">Reported Items</Link>
                 </li>
               </>
             )}
