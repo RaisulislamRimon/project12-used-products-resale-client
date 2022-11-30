@@ -60,9 +60,13 @@ const MyOrders = () => {
                   <td>{myOrder.bookData.book_name}</td>
                   <td>${myOrder.bookData.resalePrice}</td>
                   <th>
-                    <Link to={`/dashboard/payment/${myOrder._id}`}>
-                      <button className="btn btn-accent btn-md">Pay</button>
-                    </Link>
+                    {myOrder?.paymentStatus ? (
+                      <button className="btn btn-success btn-md">Paid</button>
+                    ) : (
+                      <Link to={`/dashboard/payment/${myOrder._id}`}>
+                        <button className="btn btn-accent btn-md">Pay</button>
+                      </Link>
+                    )}
                   </th>
                 </tr>
               ))}

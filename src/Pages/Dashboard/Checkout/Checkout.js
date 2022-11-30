@@ -1,7 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
-const CheckoutForm = ({ orderInfo }) => {
+const CheckoutForm = ({ info }) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -10,10 +11,10 @@ const CheckoutForm = ({ orderInfo }) => {
 
   const stripe = useStripe();
   const elements = useElements();
-  console.log(orderInfo);
-  const { bookData, email, patient, _id } = orderInfo;
-  console.log(bookData);
+  console.log(info);
+  const { bookData, email, name, _id } = info;
   const { resalePrice } = bookData;
+  console.log(resalePrice);
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:5000/create-payment-intent", {
@@ -22,7 +23,7 @@ const CheckoutForm = ({ orderInfo }) => {
         "Content-Type": "application/json",
         // authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify(resalePrice),
+      body: JSON.stringify({ resalePrice }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
@@ -58,11 +59,13 @@ const CheckoutForm = ({ orderInfo }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: patient,
+            name: name,
             email: email,
           },
         },
       });
+
+    console.log(paymentIntent);
 
     if (confirmError) {
       setCardError(confirmError.message);
@@ -75,13 +78,13 @@ const CheckoutForm = ({ orderInfo }) => {
         resalePrice,
         transactionId: paymentIntent.id,
         email,
-        bookingId: _id,
+        orderInfoId: _id,
       };
+      console.log(payment);
       fetch("http://localhost:5000/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify(payment),
       })
@@ -91,6 +94,26 @@ const CheckoutForm = ({ orderInfo }) => {
           if (data.insertedId) {
             setSuccess("Congrats! your payment completed");
             setTransactionId(paymentIntent.id);
+          }
+        });
+
+      fetch(`http://localhost:5000/makeorderpaid/${_id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ isPaid: true }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            Swal.fire({
+              title: "Congrats!",
+              text: "Your order is placed successfully",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
           }
         });
     }
