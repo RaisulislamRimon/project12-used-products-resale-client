@@ -42,7 +42,7 @@ const DashboardLayout = () => {
             {/* <!-- Sidebar content here --> */}
             {userType === "buyer" && (
               <li>
-                <Link to="/my-orders">My Orders</Link>
+                <Link to="/dashboard/my-orders">My Orders</Link>
               </li>
             )}
             {userType === "seller" && (

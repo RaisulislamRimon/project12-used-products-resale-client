@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import Main from "../../Layout/Main/Main";
 import AddAProduct from "../../Pages/Dashboard/AddAProduct/AddAProduct";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/AdvertiseDetails";
 import Home from "../../Pages/Home/Home/Home";
@@ -62,11 +63,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <AddAProduct />,
+        element: (
+          <h1 className="h-96 justify-center text-3xl flex items-center">
+            Please choose the right option
+          </h1>
+        ),
       },
       {
         path: "/dashboard/add-product",
         element: <AddAProduct />,
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: <MyOrders />,
       },
       {
         path: "/dashboard/my-products",
