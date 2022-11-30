@@ -58,7 +58,7 @@ const Signup = () => {
         };
         console.log(userInfo);
 
-        fetch("http://localhost:5000/signup", {
+        fetch("https://used-products-resale-server-kappa.vercel.app/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

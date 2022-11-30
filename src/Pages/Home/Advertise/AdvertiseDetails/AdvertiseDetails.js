@@ -6,8 +6,10 @@ const AdvertiseDetails = () => {
   // console.log(advertiseId);
   const [advertiseDetails, setAdvertiseDetails] = useState([]);
   useEffect(() => {
-    // fetch(`http://localhost:5000/advertise/${advertiseId}`)
-    fetch(`http://localhost:5000/advertise/${advertiseId}`)
+    // fetch(`https://used-products-resale-server-kappa.vercel.app/advertise/${advertiseId}`)
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/advertise/${advertiseId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setAdvertiseDetails(data);

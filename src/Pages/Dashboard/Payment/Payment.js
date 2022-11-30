@@ -13,7 +13,7 @@ const Payment = () => {
   const [orderInfo, setOrderInfo] = useState(data);
   console.log(orderInfo);
   const [error, setError] = useState("");
-  // fetch(`http://localhost:5000/my-orders/${myOrderId}`)
+  // fetch(`https://used-products-resale-server-kappa.vercel.app/my-orders/${myOrderId}`)
   //   .then((res) => res.json())
   //   .then((data) => {
   //     // setInfo(data);
@@ -22,7 +22,7 @@ const Payment = () => {
   //   });
   // useEffect(() => {
   //   axios
-  //     .get(`http://localhost:5000/my-orders/${myOrderId}`)
+  //     .get(`https://used-products-resale-server-kappa.vercel.app/my-orders/${myOrderId}`)
   //     .then(function (response) {
   //       // handle success
   //       console.log(response.data);

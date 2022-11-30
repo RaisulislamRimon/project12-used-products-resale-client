@@ -52,7 +52,7 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        console.log(result.user)
+        console.log(result.user);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -65,7 +65,7 @@ const Login = () => {
         };
         form.reset();
         navigate(from, { replace: true });
-        // fetch("http://localhost:5000/jwt", {
+        // fetch("https://used-products-resale-server-kappa.vercel.app/jwt", {
         //   method: "POST",
         //   headers: {
         //     "content-type": "application/json",
