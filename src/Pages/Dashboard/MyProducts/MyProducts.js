@@ -50,6 +50,28 @@ const MyProducts = () => {
       });
   };
 
+  const handleAdvertise = (bookAdvertise) => {
+    fetch(`http://localhost:5000/my-books/${bookAdvertise._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.modifiedCount > 0) {
+          Swal.fire({
+            title: "Advertise!",
+            text: "Your book has been advertised.",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          refetch();
+        }
+      });
+  };
+
   return (
     <div>
       <h1 className="text-center text-3xl my-3">My Products</h1>
@@ -75,7 +97,18 @@ const MyProducts = () => {
                   {/* <td>Advertise | Delete</td> */}
                   <td>
                     {" "}
-                    {myBook.available === "unsold" && "Advertise | "}
+                    {myBook.available === "unsold" &&
+                      myBook.advertise === "false" && (
+                        <span
+                          onClick={() => handleAdvertise(myBook)}
+                          className="cursor-pointer text-blue-500 hover:text-blue-700"
+                        >
+                          Advertise
+                        </span>
+                      )}
+                    {myBook.available === "unsold" &&
+                      myBook.advertise === "false" &&
+                      " | "}
                     <span
                       onClick={() => handleDelete(myBook)}
                       className="text-red-500 cursor-pointer"
