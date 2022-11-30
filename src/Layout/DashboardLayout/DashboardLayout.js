@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Footer from "../../Pages/Shared/Footer/Footer";
 import Navbar from "../../Pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
@@ -73,6 +74,7 @@ const DashboardLayout = () => {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
