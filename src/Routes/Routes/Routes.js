@@ -13,6 +13,7 @@ import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/Advert
 import Home from "../../Pages/Home/Home/Home";
 import ShowBooksByCategories from "../../Pages/Home/ShowBooksByCategories/ShowBooksByCategories";
 import Login from "../../Pages/Login/Login";
+import Blogs from "../../Pages/Shared/Blogs/Blogs";
 import NotFound from "../../Pages/Shared/NotFound/NotFound";
 import Signup from "../../Pages/Signup/Signup";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Signup />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "*",

@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+# Project details and instructions for running the client
+
+# Project details
+
+This project is a client side for the used-products-resale website.It is a simple web application that allows users to sell & buy books online.
+
+# Users can buy books
+
+# Users can sell books
+
+# Users can pay with Stripe payment gateway
+
+# Users can register
+
+# Sellers can add books/products to sell via website.
+
+## Live Website :
+
+### adminEmail: rimonppip0@gmail.com
+
+### adminPassword: rimon1
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

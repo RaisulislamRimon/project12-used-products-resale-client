@@ -29,6 +29,9 @@ const Navbar = () => {
       <li>
         <Link to="/">All products</Link>
       </li>
+      <li>
+        <Link to="/blogs">Blogs</Link>
+      </li>
       {user?.email && (
         <li>
           <Link to="/dashboard">Dashboard</Link>
