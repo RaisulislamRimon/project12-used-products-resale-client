@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Loading from "../../Shared/Loading/Loading";
 
@@ -35,8 +36,8 @@ const MyOrders = () => {
             {/* <!-- head --> */}
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Name</th>
-                <th>Title</th>
                 <th>Price</th>
                 <th>Payment</th>
               </tr>
@@ -59,7 +60,9 @@ const MyOrders = () => {
                   <td>{myOrder.bookData.book_name}</td>
                   <td>${myOrder.bookData.resalePrice}</td>
                   <th>
-                    <button className="btn btn-accent btn-md">Pay</button>
+                    <Link to={`/dashboard/payment/${myOrder._id}`}>
+                      <button className="btn btn-accent btn-md">Pay</button>
+                    </Link>
                   </th>
                 </tr>
               ))}
@@ -67,8 +70,8 @@ const MyOrders = () => {
             {/* <!-- foot --> */}
             <tfoot>
               <tr>
+                <th>Image</th>
                 <th>Name</th>
-                <th>Title</th>
                 <th>Price</th>
                 <th>Payment</th>
               </tr>
