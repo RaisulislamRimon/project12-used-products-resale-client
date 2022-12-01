@@ -107,6 +107,12 @@ const Signup = () => {
       });
     // console.log(email, password, checked);
   };
+
+  const handleGoogleLogin = (googleProvider) => {
+    console.log("googleProvider");
+    // providerLogin(googleProvider);
+  };
+
   return (
     <div>
       <div className="mt-10">
@@ -188,7 +194,7 @@ const Signup = () => {
               Sign Up
             </button>
 
-            <div className="mx-auto btn mb-4">
+            <div onClick={handleGoogleLogin} className="mx-auto btn mb-4">
               <p className="">Or, Sign up with Google</p>
               <div className="flex justify-around text-2xl text-center">
                 <FaGoogle className="hover:cursor-pointer ml-3 text-lg" />
