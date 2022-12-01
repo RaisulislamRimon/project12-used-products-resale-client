@@ -11,8 +11,15 @@ const AdminRoute = ({ children }) => {
 
   if (loading || isAdminLoading) {
     return (
-      <div className="flex justify-center items-center h-96">
-        <Loading />
+      <div className="h-96">
+        <div className="flex justify-center items-center my-20">
+          <Loading />
+        </div>
+        <div>
+          <h2 className="text-xl text-red-500 text-center">
+            You are not authorized
+          </h2>
+        </div>
       </div>
     );
   }
