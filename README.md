@@ -4,15 +4,17 @@
 
 This project is a client side for the used-products-resale website.It is a simple web application that allows users to sell & buy books online.
 
-# Users can buy books
+- Buyers can buy books
 
-# Users can sell books
+- Sellers can sell books
 
-# Users can pay with Stripe payment gateway
+- Users can advertise their books
 
-# Users can register
+- Buyers can pay with Stripe payment gateway
 
-# Sellers can add books/products to sell via website.
+- Users can register/login with email/google
+
+- Sellers can add books/products to sell via website.
 
 ## Live Website : https://used-products-resale-b170c.web.app/
 
