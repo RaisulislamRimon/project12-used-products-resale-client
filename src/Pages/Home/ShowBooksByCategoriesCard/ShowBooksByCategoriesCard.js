@@ -42,15 +42,16 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
           <p>
             Resale Price : <span className="text-red-500">${resalePrice}</span>
           </p>
-          <p>Seller Name : {sellerName}</p>
-          <p className="flex justify-center items-center">
-            Verified Seller :{" "}
-            {user?.emailVerified ? (
-              <GoVerified className="ml-2 text-blue-700" />
-            ) : (
-              <GoUnverified className="ml-2 text-red-700" />
-            )}
-          </p>
+          <div className="flex">
+            <span>Seller Name : {sellerName}</span>
+            <span className="flex justify-center items-center">
+              {user?.emailVerified ? (
+                <GoVerified className="ml-2 text-blue-700" />
+              ) : (
+                <GoUnverified className="ml-2 text-red-700" />
+              )}
+            </span>
+          </div>
           <p>Years of use : {yearOfPurchase}</p>
           <p>Posted Time : {postTime}</p>
           {/* <div className="card-actions">
