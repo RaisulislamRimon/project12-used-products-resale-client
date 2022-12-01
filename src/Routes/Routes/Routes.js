@@ -4,11 +4,12 @@ import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import Main from "../../Layout/Main/Main";
 import AddAProduct from "../../Pages/Dashboard/AddAProduct/AddAProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
-import AllSellers from "../../Pages/Dashboard/AllSelers/AllSellers";
+import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Advertise from "../../Pages/Home/Advertise/Advertise/Advertise";
 import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/AdvertiseDetails";
 import AllProducts from "../../Pages/Home/AllProducts/AllProducts";
@@ -147,6 +148,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllBuyers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reported-items",
+        element: (
+          <AdminRoute>
+            <ReportedItems />
           </AdminRoute>
         ),
       },
