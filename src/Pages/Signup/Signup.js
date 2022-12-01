@@ -55,6 +55,7 @@ const Signup = () => {
           password,
           checked,
           userIdFirebase,
+          emailVerified: false,
         };
         console.log(userInfo);
 
@@ -74,18 +75,11 @@ const Signup = () => {
                 icon: "success",
                 title: "Account created successfully",
                 showConfirmButton: false,
-                timer: 1000,
+                timer: 2000,
               });
             }
           });
 
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your account has been successfully created",
-          showConfirmButton: false,
-          timer: 2000,
-        });
         form.reset();
         updateUserProfile({
           displayName: name,
@@ -105,12 +99,51 @@ const Signup = () => {
           timer: 2000,
         });
       });
-    // console.log(email, password, checked);
   };
 
-  const handleGoogleLogin = (googleProvider) => {
-    console.log("googleProvider");
-    // providerLogin(googleProvider);
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        if (result?.user?.uid) {
+          const userInfo = {
+            name: result?.user?.displayName,
+            email: result?.user?.email,
+            checked: "buyer",
+            userIdFirebase: result?.user?.uid,
+            emailVerified: result?.user?.emailVerified,
+          };
+
+          fetch("http://localhost:5000/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Account created successfully",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              }
+            });
+          navigate(from, { replace: true });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Please try again",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   };
 
   return (
