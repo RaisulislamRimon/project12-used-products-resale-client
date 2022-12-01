@@ -100,9 +100,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-orders",
         element: (
-          // <BuyerRoute>
-          <MyOrders />
-          // </BuyerRoute>
+          <BuyerRoute>
+            <MyOrders />
+          </BuyerRoute>
         ),
       },
       {

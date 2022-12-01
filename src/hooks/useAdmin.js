@@ -7,16 +7,17 @@ const useAdmin = (email) => {
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/allusers/user-type/${user?.email}`)
+      fetch(`http://localhost:5000/allusers/admin/${user?.email}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          console.log(typeof data);
-          if (data === "admin") {
-            // setIsAdmin("admin");
-            setIsAdmin(true);
-            setIsAdminLoading(false);
-          }
+          // console.log(data);
+          // console.log(typeof data);
+          // if (data === "admin") {
+          // setIsAdmin("admin");
+          // setIsAdmin(true);
+          setIsAdmin(data?.isAdmin);
+          setIsAdminLoading(false);
+          // }
         });
     }
   }, [user?.email]);

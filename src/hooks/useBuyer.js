@@ -3,19 +3,21 @@ import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
 
 const useBuyer = (email) => {
   const { user } = useContext(AuthContext);
-  const [isBuyer, setIsBuyer] = useState("");
+  const [isBuyer, setIsBuyer] = useState(false);
   const [isBuyerLoading, setIsBuyerLoading] = useState(true);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/allusers/user-type/${user?.email}`)
+      fetch(`http://localhost:5000/allusers/buyer/${user?.email}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          if (data === "buyer") {
-            setIsBuyer("buyer");
-            setIsBuyer(true);
-            setIsBuyerLoading(false);
-          }
+          // console.log(data);
+          // if (data === "buyer") {
+          //   // setIsBuyer("buyer");
+          //   setIsBuyer(true);
+          //   setIsBuyerLoading(false);
+          // }
+          setIsBuyer(data?.isBuyer);
+          setIsBuyerLoading(false);
         });
     }
   }, [user?.email]);

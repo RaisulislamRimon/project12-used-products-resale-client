@@ -10,6 +10,7 @@ const BuyerRoute = ({ children }) => {
   const location = useLocation();
 
   console.log(`isBuyer = ${isBuyer}`);
+  
   if (loading || setIsBuyerLoading) {
     return (
       <div className="h-96">
