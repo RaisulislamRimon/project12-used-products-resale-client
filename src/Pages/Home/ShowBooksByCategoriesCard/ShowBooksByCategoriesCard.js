@@ -7,6 +7,7 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
   const {
     _id,
     book_name,
+    description,
     book_img,
     book_writer,
     category_name,
@@ -37,6 +38,14 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
           <h2 className="card-title">{book_name}</h2>
           <p>Writer: {book_writer}</p>
           <p>Category-name: {category_name}</p>
+          <p title={description}>
+            Description:{" "}
+            {description
+              ? description.length > 40
+                ? description.substr(0, 40) + "..."
+                : description
+              : "No description"}
+          </p>
           <p>Location : {location}</p>
           <p>Original Price : {originalPrice}</p>
           <p>
