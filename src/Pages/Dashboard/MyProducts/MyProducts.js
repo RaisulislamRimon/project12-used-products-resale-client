@@ -79,7 +79,7 @@ const MyProducts = () => {
 
   return (
     <div>
-      <h1 className="text-center text-3xl my-3">My Products</h1>
+      <h1 className="text-center text-3xl my-3 underline">My Products</h1>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
