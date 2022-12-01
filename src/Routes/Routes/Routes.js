@@ -11,6 +11,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Advertise from "../../Pages/Home/Advertise/Advertise/Advertise";
 import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/AdvertiseDetails";
+import AllProducts from "../../Pages/Home/AllProducts/AllProducts";
 import BooksCategories from "../../Pages/Home/BooksCategories/BooksCategories";
 import Home from "../../Pages/Home/Home/Home";
 import ShowBooksByCategories from "../../Pages/Home/ShowBooksByCategories/ShowBooksByCategories";
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/advertises",
         element: <Advertise />,
+      },
+      {
+        path: "/all-products",
+        element: <AllProducts />,
       },
       {
         path: "*",

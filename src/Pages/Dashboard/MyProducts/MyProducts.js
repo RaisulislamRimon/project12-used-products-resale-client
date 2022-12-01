@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Loading from "../../Shared/Loading/Loading";
 import Swal from "sweetalert2";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const url = `http://localhost:5000/my-books?email=${user?.email}`;
 
@@ -57,7 +58,10 @@ const MyProducts = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        setLoading(true);
+        return res.json();
+      })
       .then((result) => {
         if (result.modifiedCount > 0) {
           Swal.fire({
@@ -68,6 +72,7 @@ const MyProducts = () => {
             timer: 3000,
           });
           refetch();
+          setLoading(false);
         }
       });
   };
@@ -88,6 +93,7 @@ const MyProducts = () => {
               </tr>
             </thead>
             <tbody>
+              {loading && <Loading />}
               {myBooks.map((myBook, i) => (
                 <tr key={myBook._id}>
                   <th>{i + 1}</th>

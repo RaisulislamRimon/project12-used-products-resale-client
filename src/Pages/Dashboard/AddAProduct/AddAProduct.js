@@ -70,6 +70,7 @@ const AddAProduct = () => {
               condition,
               sellerName: user?.displayName,
               postTime: new Date().toDateString(),
+              advertise: false,
             };
             fetch(`http://localhost:5000/add-product`, {
               method: "POST",
