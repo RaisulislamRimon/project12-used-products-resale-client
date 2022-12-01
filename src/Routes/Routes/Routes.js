@@ -92,9 +92,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-buyers",
         element: (
-          /*// <SellerRoute>*/
-          <MyBuyers />
-          /* </SellerRoute> */
+          <SellerRoute>
+            <MyBuyers />
+          </SellerRoute>
         ),
       },
       {
