@@ -67,25 +67,18 @@ const MyBuyers = () => {
                 <th></th>
                 <th>Buyer Name</th>
                 <th>Buyer Email</th>
-                <th>Status</th>
-                <th>Activity</th>
+                <th>Phone</th>
+                <th>Location</th>
               </tr>
             </thead>
             <tbody>
               {allBuyers.map((buyer, i) => (
-                <tr key={buyer._id}>
+                <tr key={buyer?._id}>
                   <th>{i + 1}</th>
-                  <td>{buyer.name}</td>
-                  <td>{buyer.email}</td>
-                  <td>{buyer?.checked || "user"}</td>
-                  <td>
-                    <span
-                      onClick={() => handleDeleteBuyer(buyer)}
-                      className="text-red-500 cursor-pointer"
-                    >
-                      Delete
-                    </span>
-                  </td>
+                  <td>{buyer?.name}</td>
+                  <td>{buyer?.email}</td>
+                  <td>{buyer?.phone || "Not available"}</td>
+                  <td>{buyer?.meetingLocation || "Not available"}</td>
                 </tr>
               ))}
             </tbody>
