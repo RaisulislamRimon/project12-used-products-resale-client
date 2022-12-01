@@ -114,10 +114,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-products",
         element: (
-          // <SellerRoute>
-          <MyProducts />
+          <SellerRoute>
+            <MyProducts />
+          </SellerRoute>
         ),
-        // </SellerRoute>
       },
       {
         path: "/dashboard/all-sellers",
