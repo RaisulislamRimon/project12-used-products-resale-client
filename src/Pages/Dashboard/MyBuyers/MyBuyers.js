@@ -18,7 +18,11 @@ const MyBuyers = () => {
   } = useQuery({
     queryKey: ["my-buyers"],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("club")}`,
+        },
+      });
       const data = await res.json();
       console.log(data);
       return data;
@@ -72,15 +76,17 @@ const MyBuyers = () => {
               </tr>
             </thead>
             <tbody>
-              {allBuyers.map((buyer, i) => (
-                <tr key={buyer?._id}>
-                  <th>{i + 1}</th>
-                  <td>{buyer?.name}</td>
-                  <td>{buyer?.email}</td>
-                  <td>{buyer?.phone || "Not available"}</td>
-                  <td>{buyer?.meetingLocation || "Not available"}</td>
-                </tr>
-              ))}
+              {allBuyers &&
+                allBuyers.length &&
+                allBuyers.map((buyer, i) => (
+                  <tr key={buyer?._id}>
+                    <th>{i + 1}</th>
+                    <td>{buyer?.name}</td>
+                    <td>{buyer?.email}</td>
+                    <td>{buyer?.phone || "Not available"}</td>
+                    <td>{buyer?.meetingLocation || "Not available"}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

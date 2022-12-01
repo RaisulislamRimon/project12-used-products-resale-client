@@ -6,22 +6,32 @@ import { Link } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
 
 const Advertise = () => {
-  const {
-    isLoading,
-    error,
-    data: advertises = [],
-  } = useQuery({
-    queryKey: ["advertises"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/advertise`);
-      const data = await res.json();
-      return data;
-    },
-  });
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: advertises = [],
+  // } = useQuery({
+  //   queryKey: ["advertises"],
+  //   queryFn: async () => {
+  //     const res = await fetch(`http://localhost:5000/advertise`);
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
-  if (error) return "An error has occurred: " + error.message;
+  // if (error) return "An error has occurred: " + error.message;
+  const [advertises, setAdvertises] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/advertise`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("club")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setAdvertises(data));
+  }, []);
 
   // console.log(advertises);
   // console.log(advertises._id);
