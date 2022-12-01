@@ -1,21 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { isError, useQuery } from "@tanstack/react-query";
+import React from "react";
 import Swal from "sweetalert2";
 import Loading from "../../Shared/Loading/Loading";
 
-const AllSellers = () => {
-  const url = `http://localhost:5000/all-sellers`;
+const AllBuyers = () => {
+  const url = `http://localhost:5000/all-buyers`;
 
   const {
-    data: allSellers = [],
+    data: allBuyers = [],
     error,
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["all-sellers"],
+    queryKey: ["all-buyers"],
     queryFn: async () => {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -26,9 +27,9 @@ const AllSellers = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  const handleDeleteSeller = (seller) => {
+  const handleDeleteSeller = (buyer) => {
     // console.log("handleDeleteSeller", seller);
-    fetch(`http://localhost:5000/all-sellers/delete/${seller._id}`, {
+    fetch(`http://localhost:5000/all-buyers/delete/${buyer._id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -42,7 +43,7 @@ const AllSellers = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "Seller deleted successfully",
+            title: "Buyer deleted successfully",
             showConfirmButton: false,
             timer: 1000,
           });
@@ -53,29 +54,29 @@ const AllSellers = () => {
 
   return (
     <div>
-      <h1 className="text-center text-3xl underline my-5">All Sellers</h1>
+      <h1 className="text-center text-3xl underline my-5">All Buyers</h1>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
               <tr>
                 <th></th>
-                <th>Seller Name</th>
-                <th>Seller Email</th>
+                <th>Buyer Name</th>
+                <th>Buyer Email</th>
                 <th>Status</th>
                 <th>Activity</th>
               </tr>
             </thead>
             <tbody>
-              {allSellers.map((seller, i) => (
-                <tr key={seller._id}>
+              {allBuyers.map((buyer, i) => (
+                <tr key={buyer._id}>
                   <th>{i + 1}</th>
-                  <td>{seller.name}</td>
-                  <td>{seller.email}</td>
-                  <td>{seller.checked}</td>
+                  <td>{buyer.name}</td>
+                  <td>{buyer.email}</td>
+                  <td>{buyer.checked}</td>
                   <td>
                     <span
-                      onClick={() => handleDeleteSeller(seller)}
+                      onClick={() => handleDeleteSeller(buyer)}
                       className="text-red-500 cursor-pointer"
                     >
                       Delete
@@ -91,4 +92,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default AllBuyers;
