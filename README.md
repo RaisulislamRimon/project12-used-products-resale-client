@@ -18,7 +18,7 @@ This project is a client side for the used-products-resale website.It is a simpl
 
 ## Live Website : https://used-products-resale-b170c.web.app/
 
-### adminEmail: rimonppip0@gmail.com
+### adminEmail: rimon0@gmail.com
 
 ### adminPassword: rimon1
 
