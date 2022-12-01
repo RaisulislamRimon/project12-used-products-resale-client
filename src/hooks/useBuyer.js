@@ -7,9 +7,7 @@ const useBuyer = (email) => {
   const [isBuyerLoading, setIsBuyerLoading] = useState(true);
   useEffect(() => {
     if (user?.email) {
-      fetch(
-        `https://used-products-resale-server-kappa.vercel.app/allusers/user-type/${user?.email}`
-      )
+      fetch(`http://localhost:5000/allusers/user-type/${user?.email}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);

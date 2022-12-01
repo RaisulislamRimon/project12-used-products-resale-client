@@ -65,7 +65,7 @@ const Login = () => {
         };
         form.reset();
         navigate(from, { replace: true });
-        // fetch("https://used-products-resale-server-kappa.vercel.app/jwt", {
+        // fetch("http://localhost:5000/jwt", {
         //   method: "POST",
         //   headers: {
         //     "content-type": "application/json",

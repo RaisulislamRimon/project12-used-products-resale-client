@@ -71,16 +71,13 @@ const AddAProduct = () => {
               sellerName: user?.displayName,
               postTime: new Date().toDateString(),
             };
-            fetch(
-              `https://used-products-resale-server-kappa.vercel.app/add-product`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(addedProductInfo),
-              }
-            )
+            fetch(`http://localhost:5000/add-product`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(addedProductInfo),
+            })
               .then((response) => response.json())
               .then((data) => {
                 if (data.acknowledged) {
