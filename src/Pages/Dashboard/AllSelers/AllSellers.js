@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import Swal from "sweetalert2";
 
 const AllSellers = () => {
   const url = `http://localhost:5000/all-sellers`;
@@ -18,6 +19,32 @@ const AllSellers = () => {
       return data;
     },
   });
+
+  const handleDeleteSeller = (seller) => {
+    // console.log("handleDeleteSeller", seller);
+    fetch(`http://localhost:5000/all-sellers/delete/${seller._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        // console.log("clicked");
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Seller deleted successfully",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          refetch();
+        }
+      });
+  };
+
   return (
     <div>
       <h1 className="text-center text-3xl underline my-5">All Sellers</h1>
@@ -42,7 +69,7 @@ const AllSellers = () => {
                   <td>{seller.checked}</td>
                   <td>
                     <span
-                      // onClick={() => handleDelete(seller)}
+                      onClick={() => handleDeleteSeller(seller)}
                       className="text-red-500 cursor-pointer"
                     >
                       Delete
