@@ -10,6 +10,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import AdvertiseDetails from "../../Pages/Home/Advertise/AdvertiseDetails/AdvertiseDetails";
+import BooksCategories from "../../Pages/Home/BooksCategories/BooksCategories";
 import Home from "../../Pages/Home/Home/Home";
 import ShowBooksByCategories from "../../Pages/Home/ShowBooksByCategories/ShowBooksByCategories";
 import Login from "../../Pages/Login/Login";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/products-categories",
+        element: <BooksCategories />,
       },
       {
         path: "*",

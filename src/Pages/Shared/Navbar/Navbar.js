@@ -19,7 +19,7 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link to="/">Product categories</Link>
+        <Link to="/products-categories">Product categories</Link>
       </li>
       <li tabIndex={0}>
         <Link to="/" className="justify-between">
