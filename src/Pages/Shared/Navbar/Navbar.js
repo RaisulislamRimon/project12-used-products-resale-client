@@ -22,7 +22,7 @@ const Navbar = () => {
         <Link to="/products-categories">Product categories</Link>
       </li>
       <li tabIndex={0}>
-        <Link to="/" className="justify-between">
+        <Link to="/advertises" className="justify-between">
           Advertised items
         </Link>
       </li>
