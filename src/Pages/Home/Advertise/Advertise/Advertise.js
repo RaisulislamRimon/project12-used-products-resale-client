@@ -23,7 +23,8 @@ const Advertise = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  console.log(advertises);
+  // console.log(advertises);
+  // console.log(advertises._id);
 
   return (
     <div>
@@ -56,7 +57,7 @@ const Advertise = () => {
                 {/* </Link> */}
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                   {advertises.map((advertise) => (
-                    <div>
+                    <div key={advertise._id}>
                       <img
                         // src="https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         src={advertise.book_img}
