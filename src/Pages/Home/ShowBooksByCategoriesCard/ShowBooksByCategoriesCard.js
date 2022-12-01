@@ -15,6 +15,7 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
     postTime,
     resalePrice,
     sellerName,
+    yearOfPurchase,
   } = book;
 
   const handleBuyNow = (book) => {
@@ -50,6 +51,7 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
               <GoUnverified className="ml-2 text-red-700" />
             )}
           </p>
+          <p>Years of use : {yearOfPurchase}</p>
           <p>Posted Time : {postTime}</p>
           {/* <div className="card-actions">
             <button className="btn btn-primary">Buy Now</button>
