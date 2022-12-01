@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
-    // localStorage.removeItem("club");
+    localStorage.removeItem("club");
     return signOut(auth);
   };
 

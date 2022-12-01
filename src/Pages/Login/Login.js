@@ -61,23 +61,23 @@ const Login = () => {
           timer: 2000,
         });
         const currentUser = {
-          email: result.user.email,
+          email: result?.user?.email,
         };
         form.reset();
-        navigate(from, { replace: true });
-        // fetch("http://localhost:5000/jwt", {
-        //   method: "POST",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify(currentUser),
-        // })
-        //   .then((response) => response.json())
-        //   .then((data) => {
-        //     // console.log(data);
-        //     // localStorage.setItem("club", data.token);
-        //     navigate(from, { replace: true });
-        //   });
+        // navigate(from, { replace: true });
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(data);
+            localStorage.setItem("club", data?.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         Swal.fire({
@@ -93,7 +93,19 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
-        navigate(from, { replace: true });
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(result?.user?.email),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(data);
+            localStorage.setItem("club", data?.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         Swal.fire({

@@ -5,18 +5,27 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Loading from "../../Shared/Loading/Loading";
 
 const MyOrders = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const {
     isLoading,
     error,
     data: myOrders = [],
   } = useQuery({
-    queryKey: ["myOrders"],
+    queryKey: ["myOrders", logOut, user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/my-orders?email=${user?.email}`
+        `http://localhost:5000/my-orders?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("club")}`,
+          },
+        }
       );
       const data = await res.json();
+      console.log("inside res", res);
+      if (res.status === 401 || res.status === 403) {
+        logOut();
+      }
       return data;
     },
   });
@@ -26,6 +35,7 @@ const MyOrders = () => {
   if (error) return "An error has occurred: " + error.message;
 
   console.log(myOrders);
+  console.log(myOrders?.message);
   return (
     <div>
       <h1 className="text-center text-3xl">My Orders</h1>

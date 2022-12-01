@@ -85,7 +85,19 @@ const Signup = () => {
           displayName: name,
           // photoURL: photoUrl,
         });
-        navigate(from, { replace: true });
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(email),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(data);
+            localStorage.setItem("club", data?.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         console.error(error);
@@ -130,9 +142,21 @@ const Signup = () => {
                   showConfirmButton: false,
                   timer: 2000,
                 });
+                fetch("http://localhost:5000/jwt", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(userInfo.email),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    // console.log(data);
+                    localStorage.setItem("club", data?.token);
+                    navigate(from, { replace: true });
+                  });
               }
             });
-          navigate(from, { replace: true });
         }
       })
       .catch((error) => {
