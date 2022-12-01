@@ -4,7 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const BuyNowModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
-  const { book_name, book_writer } = bookData;
+  const { book_name, book_writer, resalePrice } = bookData;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(user);
@@ -14,7 +14,7 @@ const BuyNowModal = ({ bookData, setBookData }) => {
     const phone = form.phone.value;
     const meetingLocation = form.meetingLocation.value;
     setBookData(bookData);
-    console.log(bookData, name, email, phone, meetingLocation);
+    // console.log(bookData, name, email, phone, meetingLocation, resalePrice);
     const orderInfo = { bookData, name, email, phone, meetingLocation };
     console.log(orderInfo);
 
@@ -69,6 +69,7 @@ const BuyNowModal = ({ bookData, setBookData }) => {
           </label>
           <h3 className="text-lg font-bold">{book_name}</h3>
           <p className="py-4">Book writer : {book_writer}</p>
+          <p className="py-4">Resale price : ${resalePrice}</p>
 
           {/* modal form */}
           <form
