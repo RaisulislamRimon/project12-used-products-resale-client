@@ -144,13 +144,10 @@ const Login = () => {
               Login
             </button>
 
-            <div className="mx-auto btn mb-4">
+            <div onClick={handleGoogleSignIn} className="mx-auto btn mb-4">
               <p className="">Or, Sign in with Google</p>
               <div className="flex justify-around text-2xl text-center">
-                <FaGoogle
-                  onClick={handleGoogleSignIn}
-                  className="hover:cursor-pointer ml-3 text-lg"
-                />
+                <FaGoogle className="hover:cursor-pointer ml-3 text-lg" />
               </div>
             </div>
             <p>
