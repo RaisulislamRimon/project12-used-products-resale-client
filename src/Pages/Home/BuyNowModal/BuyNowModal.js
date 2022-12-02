@@ -18,7 +18,7 @@ const BuyNowModal = ({ bookData, setBookData }) => {
     const orderInfo = { bookData, name, email, phone, meetingLocation };
     console.log(orderInfo);
 
-    fetch(`http://localhost:5000/buy-now`, {
+    fetch(`https://used-products-resale-server-kappa.vercel.app/buy-now`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,13 +29,16 @@ const BuyNowModal = ({ bookData, setBookData }) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          fetch(`http://localhost:5000/buy-now/${bookData._id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(orderInfo),
-          })
+          fetch(
+            `https://used-products-resale-server-kappa.vercel.app/buy-now/${bookData._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(orderInfo),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.acknowledged) {

@@ -8,11 +8,14 @@ const MyOrders = () => {
   const { user, logOut } = useContext(AuthContext);
   const [myOrders, setMyOrders] = React.useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/my-orders?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("club")}`,
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/my-orders?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("club")}`,
+        },
+      }
+    )
       .then((response) => {
         console.log(response);
         if (response.status === 401 || response.status === 403) {
@@ -36,7 +39,7 @@ const MyOrders = () => {
   //   queryKey: ["myOrders", logOut, user?.email],
   //   queryFn: async () => {
   //     const res = await fetch(
-  //       `http://localhost:5000/my-orders?email=${user?.email}`,
+  //       `https://used-products-resale-server-kappa.vercel.app/my-orders?email=${user?.email}`,
   //       {
   //         headers: {
   //           authorization: `Bearer ${localStorage.getItem("club")}`,

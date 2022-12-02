@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllBuyers = () => {
-  const url = `http://localhost:5000/all-buyers`;
+  const url = `https://used-products-resale-server-kappa.vercel.app/all-buyers`;
 
   const {
     data: allBuyers = [],
@@ -29,12 +29,15 @@ const AllBuyers = () => {
 
   const handleDeleteSeller = (buyer) => {
     // console.log("handleDeleteSeller", seller);
-    fetch(`http://localhost:5000/all-buyers/delete/${buyer._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/all-buyers/delete/${buyer._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);

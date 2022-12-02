@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllSellers = () => {
-  const url = `http://localhost:5000/all-sellers`;
+  const url = `https://used-products-resale-server-kappa.vercel.app/all-sellers`;
 
   const {
     data: allSellers = [],
@@ -28,12 +28,15 @@ const AllSellers = () => {
 
   const handleDeleteSeller = (seller) => {
     // console.log("handleDeleteSeller", seller);
-    fetch(`http://localhost:5000/all-sellers/delete/${seller._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/all-sellers/delete/${seller._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);

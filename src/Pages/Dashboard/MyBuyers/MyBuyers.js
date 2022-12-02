@@ -7,8 +7,8 @@ import Loading from "../../Shared/Loading/Loading";
 const MyBuyers = () => {
   const { user } = useContext(AuthContext);
 
-  // const url = `http://localhost:5000/my-buyers?email=${user?.email}`;
-  const url = `http://localhost:5000/my-buyers`;
+  // const url = `https://used-products-resale-server-kappa.vercel.app/my-buyers?email=${user?.email}`;
+  const url = `https://used-products-resale-server-kappa.vercel.app/my-buyers`;
 
   const {
     data: allBuyers = [],
@@ -37,12 +37,15 @@ const MyBuyers = () => {
 
   const handleDeleteBuyer = (buyer) => {
     // console.log("handleDeletebuyer", buyer);
-    fetch(`http://localhost:5000/my-buyers/delete/${buyer._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/my-buyers/delete/${buyer._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);

@@ -5,7 +5,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
-  // fetch(`http://localhost:5000/user-type-find/email=${user?.email}`)
+  // fetch(`https://used-products-resale-server-kappa.vercel.app/user-type-find/email=${user?.email}`)
   //   .then((res) => res.json())
   //   .then((data) => {
   //     console.log(data);

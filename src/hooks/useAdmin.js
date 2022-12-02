@@ -7,7 +7,9 @@ const useAdmin = (email) => {
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/allusers/admin/${user?.email}`)
+      fetch(
+        `https://used-products-resale-server-kappa.vercel.app/allusers/admin/${user?.email}`
+      )
         .then((response) => response.json())
         .then((data) => {
           // console.log(data);

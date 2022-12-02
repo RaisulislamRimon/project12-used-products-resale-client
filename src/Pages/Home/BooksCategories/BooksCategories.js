@@ -9,7 +9,7 @@ const BooksCategories = () => {
   // const [categories, setCategories] = useState([]);
   // const [loading, setLoading] = useState(false);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/books-categories")
+  //   fetch("https://used-products-resale-server-kappa.vercel.app/books-categories")
   //     .then((response) => {
   //       setLoading(true);
   //       return response.json();
@@ -27,7 +27,9 @@ const BooksCategories = () => {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("http://localhost:5000/books-categories").then((res) => res.json()),
+      fetch(
+        "https://used-products-resale-server-kappa.vercel.app/books-categories"
+      ).then((res) => res.json()),
   });
 
   if (isLoading)

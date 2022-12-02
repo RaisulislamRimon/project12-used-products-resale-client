@@ -59,7 +59,7 @@ const Signup = () => {
         };
         console.log(userInfo);
 
-        fetch("http://localhost:5000/signup", {
+        fetch("https://used-products-resale-server-kappa.vercel.app/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const Signup = () => {
           displayName: name,
           // photoURL: photoUrl,
         });
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://used-products-resale-server-kappa.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -125,7 +125,7 @@ const Signup = () => {
             emailVerified: result?.user?.emailVerified,
           };
 
-          fetch("http://localhost:5000/signup", {
+          fetch("https://used-products-resale-server-kappa.vercel.app/signup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -142,13 +142,16 @@ const Signup = () => {
                   showConfirmButton: false,
                   timer: 2000,
                 });
-                fetch("http://localhost:5000/jwt", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(userInfo.email),
-                })
+                fetch(
+                  "https://used-products-resale-server-kappa.vercel.app/jwt",
+                  {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify(userInfo.email),
+                  }
+                )
                   .then((response) => response.json())
                   .then((data) => {
                     // console.log(data);

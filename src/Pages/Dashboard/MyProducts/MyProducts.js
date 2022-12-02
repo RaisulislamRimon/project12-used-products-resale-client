@@ -8,7 +8,7 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
-  const url = `http://localhost:5000/my-books?email=${user?.email}`;
+  const url = `https://used-products-resale-server-kappa.vercel.app/my-books?email=${user?.email}`;
 
   const {
     data: myBooks = [],
@@ -33,9 +33,12 @@ const MyProducts = () => {
   }
 
   const handleDelete = (bookDelete) => {
-    fetch(`http://localhost:5000/my-books/${bookDelete._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/my-books/${bookDelete._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((result) => {
         if (result.deletedCount > 0) {
@@ -52,12 +55,15 @@ const MyProducts = () => {
   };
 
   const handleAdvertise = (bookAdvertise) => {
-    fetch(`http://localhost:5000/my-books/${bookAdvertise._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/my-books/${bookAdvertise._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => {
         setLoading(true);
         return res.json();

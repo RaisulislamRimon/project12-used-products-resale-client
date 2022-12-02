@@ -9,7 +9,9 @@ const DashboardLayout = () => {
   const [userType, setUserType] = useState("");
   console.log(user?.email);
   if (user?.email) {
-    fetch(`http://localhost:5000/user-type-find?email=${user?.email}`)
+    fetch(
+      `https://used-products-resale-server-kappa.vercel.app/user-type-find?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setUserType(data?.checked);

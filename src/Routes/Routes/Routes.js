@@ -43,13 +43,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.category_name}`),
+          fetch(
+            `https://used-products-resale-server-kappa.vercel.app/books/${params.category_name}`
+          ),
       },
       {
         path: "/advertise/:advertiseId",
         element: <AdvertiseDetails />,
         // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/advertise/${params.advertiseId}`),
+        //   fetch(`https://used-products-resale-server-kappa.vercel.app/advertise/${params.advertiseId}`),
       },
       {
         path: "/login",
@@ -125,7 +127,9 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:myOrderId",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/my-orders/${params.myOrderId}`),
+          fetch(
+            `https://used-products-resale-server-kappa.vercel.app/my-orders/${params.myOrderId}`
+          ),
       },
       {
         path: "/dashboard/my-products",
