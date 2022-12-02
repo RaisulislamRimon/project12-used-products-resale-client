@@ -69,6 +69,7 @@ const Login = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("club")}`,
           },
           body: JSON.stringify(currentUser),
         })
@@ -97,6 +98,7 @@ const Login = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("club")}`,
           },
           body: JSON.stringify(result?.user?.email),
         })
