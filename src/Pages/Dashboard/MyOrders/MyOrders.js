@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Loading from "../../Shared/Loading/Loading";
@@ -7,24 +7,26 @@ import Loading from "../../Shared/Loading/Loading";
 const MyOrders = () => {
   const { user, logOut } = useContext(AuthContext);
   const [myOrders, setMyOrders] = React.useState([]);
-  fetch(`http://localhost:5000/my-orders?email=${user?.email}`, {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem("club")}`,
-    },
-  })
-    .then((response) => {
-      console.log(response);
-      if (response.status === 401 || response.status === 403) {
-        logOut();
-      }
-      return response.json();
+  useEffect(() => {
+    fetch(`http://localhost:5000/my-orders?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("club")}`,
+      },
     })
-    .then((data) => {
-      setMyOrders(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then((response) => {
+        console.log(response);
+        if (response.status === 401 || response.status === 403) {
+          logOut();
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setMyOrders(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [user?.email, logOut]);
 
   // const {
   //   isLoading,
