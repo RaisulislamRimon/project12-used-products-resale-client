@@ -4,17 +4,34 @@
 
 This project is a client side for the used-products-resale website.It is a simple web application that allows users to sell & buy books online.
 
-- Buyers can buy books
+## Used Technologies
 
-- Sellers can sell books
+- React
+- React Router Dom
+- Axios
+- React-Icons
+- tailwindcss
+- daisyui
+- react-query
+- js
+- nodejs
+- mongodb
+- expressjs
+- firebase
+- jwt
+- stripe
 
-- Users can advertise their books
+* Buyers can buy books
 
-- Buyers can pay with Stripe payment gateway
+* Sellers can sell books
 
-- Users can register/login with email/google
+* Users can advertise their books
 
-- Sellers can add books/products to sell via website.
+* Buyers can pay with Stripe payment gateway
+
+* Users can register/login with email/google
+
+* Sellers can add books/products to sell via website.
 
 ## Live Website : https://used-products-resale-b170c.web.app/
 
