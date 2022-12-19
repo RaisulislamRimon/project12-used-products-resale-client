@@ -75,7 +75,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-products",
-        element: <AllProducts />,
+        element: (
+          <PrivateRoute>
+            <AllProducts />
+          </PrivateRoute>
+        ),
       },
       {
         path: "*",
