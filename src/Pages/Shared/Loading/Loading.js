@@ -4,7 +4,8 @@ import { Triangle } from "react-loader-spinner";
 
 const Loading = () => {
   return (
-    <div className="mx-auto text-center w-1/2">
+    <div className="flex justify-center items-center min-h-screen">
+    {/* <div className="mx-auto text-center w-1/2"> */}
       <Triangle
         height="80"
         width="80"
