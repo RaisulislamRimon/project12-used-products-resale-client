@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const New = () => {
   return (
@@ -15,11 +16,11 @@ const New = () => {
               hand book, you can always sell it here. We have a lot of customers
               all over the world.
             </p>
-            <div className="">
+            <Link to="/all-products" className="">
               <button className="btn btn-primary text-white text-sm">
                 Get Started
               </button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

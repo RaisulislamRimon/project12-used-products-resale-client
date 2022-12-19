@@ -30,7 +30,7 @@ const ShowBooksByCategoriesCard = ({ book, setBookData }) => {
         <figure className="px-10 pt-10">
           <img
             src={book_img}
-            alt="Shoes"
+            alt="book"
             className="rounded-xl lg:w-full lg:h-96"
           />
         </figure>

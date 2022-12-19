@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -22,7 +23,11 @@ const Banner = () => {
               great with communication and have the best interest for both
               sellers and buyers.
             </p>
-            <button className="btn btn-accent">See All Books Categories</button>
+            <Link to="/products-categories">
+              <button className="btn btn-accent hover:text-white">
+                See All Books Categories
+              </button>
+            </Link>
           </div>
         </div>
       </div>
