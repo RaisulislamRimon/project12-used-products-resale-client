@@ -23,6 +23,7 @@ const Advertise = () => {
 
   // if (error) return "An error has occurred: " + error.message;
   const [advertises, setAdvertises] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(`https://used-products-resale-server-kappa.vercel.app/advertise`, {
       headers: {
@@ -30,11 +31,16 @@ const Advertise = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setAdvertises(data));
+      .then((data) => {
+        setAdvertises(data);
+        setLoading(false);
+      });
   }, []);
 
   // console.log(advertises);
   // console.log(advertises._id);
+
+  if (loading) return <Loading />;
 
   return (
     <div>
