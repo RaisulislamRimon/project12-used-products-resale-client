@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { FaHotjar } from "react-icons/fa";
 import { GiEmberShot } from "react-icons/gi";
 import { Link } from "react-router-dom";
@@ -42,6 +43,10 @@ const Advertise = () => {
 
   if (loading) return <Loading />;
 
+  const hotOffer = () => {
+    toast("You have got a hot offer!");
+  };
+
   return (
     <div>
       {advertises && advertises.length > 0 && (
@@ -66,7 +71,7 @@ const Advertise = () => {
                   the number of books printed or currently owned.
                 </p>
                 {/* <Link to={`/advertise/${advertises._id}`}> */}
-                <button className="btn btn-primary mb-3">
+                <button onClick={hotOffer} className="btn btn-primary mb-3">
                   Get hot offer now
                   <FaHotjar className="ml-2" />
                 </button>
