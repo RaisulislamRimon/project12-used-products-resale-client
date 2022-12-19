@@ -15,7 +15,9 @@ const AllProducts = () => {
   } = useQuery({
     queryKey: ["all-books"],
     queryFn: () =>
-      fetch("http://localhost:5000/all-books").then((res) => res.json()),
+      fetch(
+        "https://used-products-resale-server-kappa.vercel.app/all-books"
+      ).then((res) => res.json()),
   });
 
   if (isLoading) return <Loading />;
