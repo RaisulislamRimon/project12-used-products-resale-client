@@ -64,7 +64,7 @@ const Login = () => {
           email: result?.user?.email,
         };
         form.reset();
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         fetch("https://used-products-resale-server-kappa.vercel.app/jwt", {
           method: "POST",
           headers: {
@@ -94,6 +94,14 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
+        navigate(from, { replace: true });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You have successfully logged in",
+          showConfirmButton: false,
+          timer: 2000,
+        });
         fetch("https://used-products-resale-server-kappa.vercel.app/jwt", {
           method: "POST",
           headers: {
